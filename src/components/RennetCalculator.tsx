@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { Box, Heading, Link, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Center, Select, Divider } from '@chakra-ui/react';
 
-const RennetCalculator: FC<{}> = ({ }) => {
+const RennetCalculator: FC<{}> = () => {
     const inputLeftWidth = '10em';
 
     const [rennetStrength, setRennetStrength] = useState<number>(NaN);
@@ -14,7 +14,7 @@ const RennetCalculator: FC<{}> = ({ }) => {
 
         setRennetQuanity(NaN);
 
-        if ((rennetQuantity === 0 || isNaN(rennetQuantity)) &&
+        if ((rennetStrength === 0 || isNaN(rennetStrength)) &&
             (milk === 0 || isNaN(milk))) {
             return;
         }
