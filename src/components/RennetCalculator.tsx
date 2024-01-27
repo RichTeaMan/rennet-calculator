@@ -68,13 +68,11 @@ const RennetCalculator: FC<{}> = () => {
                         <InputGroup>
                             <Input type='number' textAlign='right' onChange={e => setMilk(e.target.valueAsNumber)} />
                             <InputRightAddon>
-                                <Select>
-                                    <option value='l'>L</option>
-                                </Select>
+                                L
                             </InputRightAddon>
                         </InputGroup>
                         <Text padding='16px'>
-                            The quantity of milk.
+                            The quantity of milk in litres. More rennet is required to coagulate a greater quantity of milk.
                         </Text>
                     </Box>
                     <Divider />
