@@ -1,12 +1,14 @@
 import './App.css';
 import RennetCalculator from './components/RennetCalculator';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   return (
     <div className="App">
       <ChakraProvider>
-        <RennetCalculator />
+        <Box padding='16px' >
+          <RennetCalculator />
+        </Box>
       </ChakraProvider>
     </div>
   );
