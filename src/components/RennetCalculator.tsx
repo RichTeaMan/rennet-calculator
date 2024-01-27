@@ -1,6 +1,7 @@
 import { FC, useMemo, useState } from 'react';
-import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text } from '@chakra-ui/react';
+import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, HStack, Flex, Spacer } from '@chakra-ui/react';
 import { padM } from '../constants';
+import { FaGithub } from "react-icons/fa";
 
 const RennetCalculator: FC<{}> = () => {
 
@@ -30,18 +31,28 @@ const RennetCalculator: FC<{}> = () => {
 
     return (
         <Box>
-            <Heading>Rennet Calculator</Heading>
-            <p>
+            <Flex>
+                <Heading flex='cen'>Rennet Calculator</Heading>
+                <Spacer />
+                <Center>
+                    <Link href='https://github.com/RichTeaMan/rennet-calculator'>
+                        <FaGithub />
+                    </Link>
+                </Center>
+            </Flex>
+            <Text padding={padM(2)} textAlign='left'>
                 Rennet strength is calculated via the Internation Milk Clotting Unit.
-            </p>
-            <p>
+                This tool will tell you how much rennet of a particular strength
+                is needed to coagulate the given amount of milk.
+            </Text>
+            <Text padding={padM(2)} textAlign='left'>
                 Maths inspired by <Link href="https://www.littlegreencheese.com/2019/07/rennet-strength-explained.html">littlegreencheese.com</Link>.
-            </p>
+            </Text>
 
             <Divider paddingTop={padM(2)} />
 
             <Center>
-                <Stack spacing={4} width='xl' paddingTop={padM(2)}>
+                <Stack spacing={4} paddingTop={padM(2)}>
                     <Box textAlign='left'>
                         <Heading size='md'>
                             Rennet strength:
@@ -55,8 +66,8 @@ const RennetCalculator: FC<{}> = () => {
                                 </Select>
                             </InputRightAddon>
                         </InputGroup>
-                        <Text padding='16px'>
-                            Rennet strength is usually measured in IMCU/mL, or IMCU/mg, depending if the rennet is liquid or a powder.
+                        <Text padding={padM(2)}>
+                            Rennet strength is usually measured in IMCU/mL or IMCU/mg, depending if the rennet is liquid or a powder.
                             The strength should be indiciated on the rennet packaging, make sure the unit is correct.
                         </Text>
                     </Box>
@@ -71,16 +82,20 @@ const RennetCalculator: FC<{}> = () => {
                                 L
                             </InputRightAddon>
                         </InputGroup>
-                        <Text padding='16px'>
+                        <Text padding={padM(2)}>
                             The quantity of milk in litres. More rennet is required to coagulate a greater quantity of milk.
                         </Text>
                     </Box>
                     <Divider />
-                    {rennetQuantity ? <Box>
-                        You require {rennetQuantity.toFixed(1)}{rennetUnit} of {rennetStrength}IMCU/{rennetUnit} strength rennet.
-                    </Box> : <Box>
-                        Enter a rennet and milk quantity.
-                    </Box>}
+                    <Text textAlign='left'>
+                        {rennetQuantity ? <Box>
+
+                            You require <Text as='b'>{rennetQuantity.toFixed(1)}{rennetUnit} of {rennetStrength}IMCU/{rennetUnit}</Text> strength rennet
+                            to coagulate {milk}L of milk.
+                        </Box> : <Box>
+                            Enter a rennet and milk quantity.
+                        </Box>}
+                    </Text>
                 </Stack>
             </Center>
         </Box>
