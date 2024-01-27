@@ -1,9 +1,8 @@
 import { FC, useMemo, useState } from 'react';
-import { Box, Heading, Link, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Center, Select, Divider, Text } from '@chakra-ui/react';
+import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text } from '@chakra-ui/react';
 import { padM } from '../constants';
 
 const RennetCalculator: FC<{}> = () => {
-    const inputLeftWidth = '10em';
 
     const [rennetStrength, setRennetStrength] = useState<number>(NaN);
     const [rennetUnit, setRennetUnit] = useState<string>('mL');
@@ -48,9 +47,6 @@ const RennetCalculator: FC<{}> = () => {
                             Rennet strength:
                         </Heading>
                         <InputGroup>
-                            <InputLeftAddon width={inputLeftWidth}>
-                                Rennet Strength
-                            </InputLeftAddon>
                             <Input type='number' textAlign='right' onChange={e => setRennetStrength(e.target.valueAsNumber)} />
                             <InputRightAddon>
                                 <Select onChange={e => setRennetUnit(e.target.value)}>
@@ -70,9 +66,6 @@ const RennetCalculator: FC<{}> = () => {
                             Milk quantity:
                         </Heading>
                         <InputGroup>
-                            <InputLeftAddon width={inputLeftWidth}>
-                                Milk
-                            </InputLeftAddon>
                             <Input type='number' textAlign='right' onChange={e => setMilk(e.target.valueAsNumber)} />
                             <InputRightAddon>
                                 <Select>
