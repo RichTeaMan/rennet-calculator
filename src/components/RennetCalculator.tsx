@@ -1,5 +1,6 @@
 import { FC, useMemo, useState } from 'react';
-import { Box, Heading, Link, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Center, Select, Divider } from '@chakra-ui/react';
+import { Box, Heading, Link, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Center, Select, Divider, Text } from '@chakra-ui/react';
+import { padM } from '../constants';
 
 const RennetCalculator: FC<{}> = () => {
     const inputLeftWidth = '10em';
@@ -38,8 +39,10 @@ const RennetCalculator: FC<{}> = () => {
                 Maths inspired by <Link href="https://www.littlegreencheese.com/2019/07/rennet-strength-explained.html">littlegreencheese.com</Link>.
             </p>
 
+            <Divider paddingTop={padM(2)} />
+
             <Center>
-                <Stack spacing={4} width='xl'>
+                <Stack spacing={4} width='xl' paddingTop={padM(2)}>
                     <Box textAlign='left'>
                         <Heading size='md'>
                             Rennet strength:
@@ -56,8 +59,10 @@ const RennetCalculator: FC<{}> = () => {
                                 </Select>
                             </InputRightAddon>
                         </InputGroup>
-                        Rennet strength is usually measured in IMCU/mL, or IMCU/mg, depending if the rennet is liquid or a powder.
-                        The strength should be indiciated on the rennet packaging, make sure the unit is correct.
+                        <Text padding='16px'>
+                            Rennet strength is usually measured in IMCU/mL, or IMCU/mg, depending if the rennet is liquid or a powder.
+                            The strength should be indiciated on the rennet packaging, make sure the unit is correct.
+                        </Text>
                     </Box>
                     <Divider />
                     <Box textAlign='left'>
@@ -75,7 +80,9 @@ const RennetCalculator: FC<{}> = () => {
                                 </Select>
                             </InputRightAddon>
                         </InputGroup>
-                        The quantity of milk.
+                        <Text padding='16px'>
+                            The quantity of milk.
+                        </Text>
                     </Box>
                     <Divider />
                     {rennetQuantity ? <Box>
