@@ -67,7 +67,7 @@ const RennetCalculator: FC<{}> = () => {
                             Rennet strength:
                         </Heading>
                         <InputGroup>
-                            <Input type='number' textAlign='right' onChange={e => { if (e.target.value.length == 0 || !isNaN(e.target.valueAsNumber)) setRennetStrength(e.target.valueAsNumber) }} value={rennetStrength} />
+                            <Input type='number' textAlign='right' onChange={e => { if (e.target.value.length === 0 || !isNaN(e.target.valueAsNumber)) setRennetStrength(e.target.valueAsNumber) }} value={rennetStrength} />
                             <InputRightAddon>
                                 <Select onChange={e => setRennetUnit(e.target.value)}>
                                     <option value='mL'>IMCU/mL</option>
@@ -94,7 +94,7 @@ const RennetCalculator: FC<{}> = () => {
                             Milk quantity:
                         </Heading>
                         <InputGroup>
-                            <Input type='number' textAlign='right' onChange={e => { if (e.target.value.length == 0 || !isNaN(e.target.valueAsNumber)) setMilk(e.target.valueAsNumber)}} value={milk} />
+                            <Input type='number' textAlign='right' onChange={e => { if (e.target.value.length === 0 || !isNaN(e.target.valueAsNumber)) setMilk(e.target.valueAsNumber)}} value={milk} />
                             <InputRightAddon>
                                 L
                             </InputRightAddon>
