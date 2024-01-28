@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react';
-import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, Flex, Spacer, Tooltip } from '@chakra-ui/react';
+import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, Flex, Spacer, Tooltip, ListItem, UnorderedList } from '@chakra-ui/react';
 import { padM } from '../constants';
 import { FaGithub } from "react-icons/fa";
 
@@ -78,6 +78,14 @@ const RennetCalculator: FC<{}> = () => {
                         <Text padding={padM(2)}>
                             Rennet strength is usually measured in IMCU/mL or IMCU/mg, depending if the rennet is liquid or a powder.
                             The strength should be indiciated on the rennet packaging, make sure the unit is correct.
+                        </Text>
+                        <Text padding={padM(2)}>
+                            If the strength is not listed as a number, it might be 'single strength'.
+                            <UnorderedList>
+                                <ListItem>'Single strength' is 200 IMCU.</ListItem>
+                                <ListItem>'Double strength' is 400 IMCU.</ListItem>
+                                <ListItem>'Triple strength' is 600 IMCU.</ListItem>
+                            </UnorderedList>
                         </Text>
                     </Box>
                     <Divider />
