@@ -35,13 +35,13 @@ const RennetCalculator: FC<{}> = () => {
 
     const rennetQuantityStr = (): string => {
 
-        return `${requiredIMCUs.toFixed(1)} IMCUs`;
+        return `${requiredIMCUs.toFixed(0)}IMCUs`;
     };
 
     return (
         <Box>
             <Flex>
-                <Heading flex='cen'>Rennet Calculator</Heading>
+                <Heading>Rennet Calculator</Heading>
                 <Spacer />
                 <Center>
                     <Link href='https://github.com/RichTeaMan/rennet-calculator'>
@@ -67,7 +67,7 @@ const RennetCalculator: FC<{}> = () => {
                             Rennet strength:
                         </Heading>
                         <InputGroup>
-                            <Input type='number' textAlign='right' onChange={e => setRennetStrength(e.target.valueAsNumber)} />
+                            <Input type='number' textAlign='right' onChange={e => { if (e.target.value.length == 0 || !isNaN(e.target.valueAsNumber)) setRennetStrength(e.target.valueAsNumber) }} value={rennetStrength} />
                             <InputRightAddon>
                                 <Select onChange={e => setRennetUnit(e.target.value)}>
                                     <option value='mL'>IMCU/mL</option>
@@ -94,7 +94,7 @@ const RennetCalculator: FC<{}> = () => {
                             Milk quantity:
                         </Heading>
                         <InputGroup>
-                            <Input type='number' textAlign='right' onChange={e => setMilk(e.target.valueAsNumber)} />
+                            <Input type='number' textAlign='right' onChange={e => { if (e.target.value.length == 0 || !isNaN(e.target.valueAsNumber)) setMilk(e.target.valueAsNumber)}} value={milk} />
                             <InputRightAddon>
                                 L
                             </InputRightAddon>
@@ -113,7 +113,7 @@ const RennetCalculator: FC<{}> = () => {
                                 {milk}L of milk requires <Tooltip label='An IMCU (International Milk Clotting Unit) coagulates 10mL of milk.'>{rennetQuantityStr()}</Tooltip> to coagulate.
                             </Text>
                             <Text padding={padM(2)}>
-                                Therefore, you require <Text as='b'>{rennetQuantity.toFixed(1)}{rennetUnit} of {rennetStrength}IMCU/{rennetUnit}</Text> strength rennet.
+                                Therefore, you require <Text as='b'>{rennetQuantity.toPrecision(1)}{rennetUnit} of {rennetStrength}IMCU/{rennetUnit}</Text> strength rennet.
                             </Text>
 
                         </Box> : <Box padding={padM(2)}>
