@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react';
-import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, HStack, Flex, Spacer } from '@chakra-ui/react';
+import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, Flex, Spacer } from '@chakra-ui/react';
 import { padM } from '../constants';
 import { FaGithub } from "react-icons/fa";
 
