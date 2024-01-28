@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react';
-import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, Flex, Spacer } from '@chakra-ui/react';
+import { Box, Heading, Link, Input, InputGroup, InputRightAddon, Stack, Center, Select, Divider, Text, Flex, Spacer, Tooltip } from '@chakra-ui/react';
 import { padM } from '../constants';
 import { FaGithub } from "react-icons/fa";
 
@@ -8,6 +8,8 @@ const RennetCalculator: FC<{}> = () => {
     const [rennetStrength, setRennetStrength] = useState<number>(NaN);
     const [rennetUnit, setRennetUnit] = useState<string>('mL');
     const [milk, setMilk] = useState<number>(NaN);
+
+    const [requiredIMCUs, setRequiredIMCUs] = useState<number>(NaN);
 
     const [rennetQuantity, setRennetQuanity] = useState<number>(NaN);
 
@@ -19,15 +21,22 @@ const RennetCalculator: FC<{}> = () => {
             (milk === 0 || isNaN(milk))) {
             return;
         }
-        // 1 IMCU coagulates 10mL (0.01L) of milk.
 
+        // 1 IMCU coagulates 10mL (0.01L) of milk.
         const unitConstant = 0.01;
-        const milkPerUnit = (rennetStrength * unitConstant);
+        setRequiredIMCUs(milk / unitConstant);
+
+        const milkPerUnit = rennetStrength * unitConstant;
 
         const newRennetQuantity = milk / milkPerUnit;
         setRennetQuanity(newRennetQuantity);
 
     }, [rennetStrength, milk]);
+
+    const rennetQuantityStr = (): string => {
+
+        return `${requiredIMCUs.toFixed(1)} IMCUs`;
+    };
 
     return (
         <Box>
@@ -87,15 +96,22 @@ const RennetCalculator: FC<{}> = () => {
                         </Text>
                     </Box>
                     <Divider />
-                    <Text textAlign='left'>
-                        {rennetQuantity ? <Box>
+                    <Box textAlign='left'>
+                        {rennetQuantity ? <Box >
+                            <Heading size='md' >
+                                Calculation:
+                            </Heading>
+                            <Text padding={padM(2)}>
+                                {milk}L of milk requires <Tooltip label='An IMCU (International Milk Clotting Unit) coagulates 10mL of milk.'>{rennetQuantityStr()}</Tooltip> to coagulate.
+                            </Text>
+                            <Text padding={padM(2)}>
+                                Therefore, you require <Text as='b'>{rennetQuantity.toFixed(1)}{rennetUnit} of {rennetStrength}IMCU/{rennetUnit}</Text> strength rennet.
+                            </Text>
 
-                            You require <Text as='b'>{rennetQuantity.toFixed(1)}{rennetUnit} of {rennetStrength}IMCU/{rennetUnit}</Text> strength rennet
-                            to coagulate {milk}L of milk.
-                        </Box> : <Box>
+                        </Box> : <Box padding={padM(2)}>
                             Enter a rennet and milk quantity.
                         </Box>}
-                    </Text>
+                    </Box>
                 </Stack>
             </Center>
         </Box>
